@@ -8,17 +8,28 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import javax.validation.Constraint;
 import javax.validation.Payload;
+import javax.validation.ReportAsSingleViolation;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import ca.blackperl.validation.validator.AgeValidator;
 
 
 /**
  * Mark an Age constrained to a minimum and maximum value
  *
  */
+@Min(18)
+@Max(110)
+@ReportAsSingleViolation
+@Constraint(validatedBy=AgeValidator.class)
+
 @Retention(RUNTIME)
 @Target({ TYPE, FIELD })
 @Documented
-public @interface AgeValidation {
+public @interface Age {
 
   // JSR-303
   // The annotation element names message, groups and payload are
